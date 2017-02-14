@@ -1,0 +1,156 @@
+#: import main main
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+TestRoot:
+<TestRoot>:
+
+   canvas:
+      Color:
+         rgb:.8039,.8627,.2235
+      Rectangle:
+         pos: self.pos
+         size: self.size
+   orientation: "vertical"
+
+   add_input: add_box
+   add_number: add_no
+   add_email: add_id
+   add_facebook: add_fb
+
+   BoxLayout:
+      Label:
+         color:[0.129,0.129,0.129,1]
+         size_hint_x:50
+         text:"Name"
+
+      TextInput:
+
+         id: add_box
+         focus: True
+         multiline: False
+         size_hint_x:50
+   BoxLayout:
+      Label:
+         color:[0.129,0.129,0.129,1]      
+         size_hint_x:50
+         text:"Phone Number"
+      TextInput:
+         id: add_no
+         focus: True
+         multiline: False
+         size_hint_x:50
+   BoxLayout:
+      Label:
+         color:[0.129,0.129,0.129,1]      
+         size_hint_x:50
+         text:"Email Id"
+      TextInput:
+         id: add_id
+         focus: True
+         multiline: False
+         size_hint_x:50
+   BoxLayout:
+      Label:
+         color:[0.129,0.129,0.129,1]      
+         size_hint_x:50
+         text:"Facebook Id"
+      TextInput:
+         id: add_fb
+         focus: True
+         multiline: False
+         size_hint_x:50   
+   BoxLayout:
+      Button:
+         background_color:(.5450,.7647,.2901,1)
+         text: "ADD CONTACT"
+         size_hint_x: 25
+         on_press: root.add_name() 
+      Button:
+         background_color:(.5450,.7647,.2901,1)
+         text: "Search"
+         size_hint_x: 25
+         on_press:root.search_page()
+
+<Searchresults>:
+   canvas:
+      Color:
+         rgb:.8039,.8627,.2235
+      Rectangle:
+         pos: self.pos
+         size: self.size
+   orientation: "vertical"
+   search_resulti: search_res
+   search_output:search_value
+   name: result_name
+   test: test_test
+   display_new: display
+   phone: result_phone
+   mail: result_mail
+   fb: result_fb
+   go_back: back
+   BoxLayout:
+      size_hint_y:10
+      TextInput:
+         id: search_res
+         focus: True
+         multiline: False
+         size_hint_x:50
+      Button:
+         background_color:(.5450,.7647,.2901,1)
+         text: "Search"
+         size_hint_x: 25
+         on_press:root.search_name()
+
+   BoxLayout:
+      size_hint_y:80
+      GridLayout:
+         cols: 2
+         rows: 4
+         id: display
+
+         Label:
+            size_hint_x: 50
+            text:"NAME : "
+         Button:
+            id: result_name
+            size_hint_x:50
+         Label:
+            size_hint_x: 50
+            text:"PHONE NUMBER : "
+         Button:
+            id:result_phone
+            size_hint_x:50
+         Label:
+            size_hint_x: 50
+            text:"EMAIL ID : "
+         Button:
+            id:result_mail
+            size_hint_x:50
+         Label:
+            size_hint_x: 50
+            text:"FACEBOOK ID : "
+         Button:
+            id:result_fb
+            size_hint_x:50
+
+   ListView:
+      size_hint_y:0
+      id: search_value
+      adapter:
+         ListAdapter(data=[],cls=main.Listitems)
+      item_strings:[]
+      canvas.before:
+         Color:
+            rgb:0,0,0
+         Rectangle:
+            pos: self.pos
+            size: self.size
+   Button:
+      text:'No Results'
+      size_hint_y:7
+      id: test_test
+      on_press: root.display()
+   Button:
+      text:'Back'
+      size_hint_y:3
+      id: back
+      on_press: root.search_pa()
